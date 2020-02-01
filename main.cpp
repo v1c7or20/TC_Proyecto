@@ -1,14 +1,13 @@
 #include <iostream>
-#include <string>
-#include <iterator>
-#include "functions.cpp"
+#include "function.cpp"
 
 using namespace std;
 
 int main(int argc, char const *argv[]){
-	if(checkGrammar("einund")){
-		cout<<"done"<<endl;
-	}else{ 
-		cout<<"dont done"<<endl;}
+    if(checkGrammars("einund")){
+        cout<<"Done"<<endl;
+    }else{
+        cout<<"Dont done"<<endl;
+    }
 	return 0;
 }
