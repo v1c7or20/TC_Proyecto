@@ -9,6 +9,9 @@ using namespace std;
  class rules {
  public:
  	rules(vector<string> rule1);
+ 	rules(){
+ 		
+ 	}
  	~rules(){
 
  	}
@@ -35,6 +38,24 @@ void rules::addToSecondRule(vector<string> ruleN){
 }
 
 void rules::addToFirstRule(vector<string> ruleN){
-
+	for (int i = 0; i < ruleN.size(); ++i){
+			this->rule.front().push_back(ruleN[i]);
+	}
 }
-
+ 
+bool rules::isInRule(string Word, int numbRule){
+	if (numbRule == 0){
+		for (auto i = rule.front().begin(); i != rule.front().end(); ++i){
+			if (Word == *i){
+				return true;
+			}
+		}
+	}else{
+		for (auto i = rule.back().begin(); i != rule.back().end(); ++i){
+			if (Word == *i){
+				return true;
+			}
+		}
+	}
+	return false;
+}
