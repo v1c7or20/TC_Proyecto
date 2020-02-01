@@ -4,7 +4,10 @@
 #include "dictionary.hpp"
 #include "rules.hpp"
 
-bool isInRule(string word, vector<string> rule){
-	
-	return true;
+
+bool checkGrammar(string word, dictionary dict){
+	for (auto iter = word.rbegin(); iter != word.rend(); ++iter){
+		
+	}
 }
+
