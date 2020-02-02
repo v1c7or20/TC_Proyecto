@@ -18,13 +18,13 @@ parser::~parser() {
     delete(translatedWords);
     translatedWords = nullptr;
 }
-
+/*-----Translate the sentence-----*/
 string parser::parse(string sentenceToTranslate) {
     string translatedSentence;
     string partialWord;
-    bool control = false;
-    bool isFather = false;
-    int count = 0;
+    bool control = false;   //controls the first "of"
+    bool isFather = false;  //controls if the last word read is father, else is mother
+    int count = 0;          //count the number of "father" or "mother" read
     for (auto letter = sentenceToTranslate.rbegin();letter != sentenceToTranslate.rend(); letter++  ) {
         if(*letter != ' '){
             partialWord.insert(partialWord.begin(), *letter);
