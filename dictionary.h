@@ -1,22 +1,19 @@
 #ifndef TC_PROYECTO_DICTIONARY_H
 #define TC_PROYECTO_DICTIONARY_H
 
+#include <vector>
 #include <string>
 #include <iostream>
-#include <algorithm>
-#include <vector>
 
 using namespace std;
 
-class dictionary{
+class dictionary {
 private:
-    vector<string> dict;
+     vector<string>* words = nullptr;
 public:
     dictionary();
-
     ~dictionary();
-
-    bool find(string toLook);
+    bool isInDictionary(string wordToLook);
 };
 
 #endif //TC_PROYECTO_DICTIONARY_H
