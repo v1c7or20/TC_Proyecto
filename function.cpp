@@ -47,17 +47,30 @@ bool checkGrammars(string word){
     string partWord = "";
     vector<rules> *ruleUsed = new vector<rules>();
     for (auto iter = word.rbegin(); iter != word.rend(); ++iter){
-        if(partWord.size() > 8){
+        if(partWord.size() > 8 ){
             return false;
         }else{
-            partWord += *iter;
+            partWord.insert(partWord.begin(),*iter);
             if(Dictionary->find(partWord) && ruleUsed->size() == 0){
                 for (auto ruleIterador = grammarRules.begin(); ruleIterador != grammarRules.end(); ++ruleIterador){
-                    if((*ruleIterador).isInRule(partWord, 0)){
+                    if((*ruleIterador).isInRule(partWord, 1)){
                         ruleUsed->push_back(*ruleIterador);
                     }
                 }
-
+                partWord = "";
+                for (  ;iter != word.rend() ; ++iter) {
+                    if(partWord.size() > 8 ){
+                        return false;
+                    }else{
+                        partWord.insert(partWord.begin(),*iter);
+                        if(Dictionary->find(partWord) && ruleUsed->size() == 0){
+                            for (auto iteradorRuleVector = ruleUsed->begin(); iteradorRuleVector != ruleUsed->end(); ++iteradorRuleVector){
+                                if((*iteradorRuleVector).isInRule(partWord, 0)){
+                                    return true;
+                                }
+                            }
+                            return false;
+                }
             }
         }
     }

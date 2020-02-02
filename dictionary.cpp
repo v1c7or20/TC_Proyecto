@@ -11,7 +11,7 @@ dictionary::dictionary() {
     dict.emplace_back("zehn");dict.emplace_back("elf");dict.emplace_back("zwölf");
     dict.emplace_back("sieb");dict.emplace_back("swan");dict.emplace_back("hundert");
     dict.emplace_back("tausend");dict.emplace_back("zig");dict.emplace_back("ssig");
-    dict.emplace_back("sech");
+    dict.emplace_back("sech");dict.emplace_back("und");
 }
 
 bool dictionary::find(string toLook) {
