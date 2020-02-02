@@ -43,12 +43,13 @@ vector<rules> makeGrammarRules(){
 
 bool checkGrammars(string word){
     vector<rules> grammarRules = makeGrammarRules();
+    bool answer = false;
     dictionary *Dictionary = new dictionary();
     string partWord = "";
     vector<rules> *ruleUsed = new vector<rules>();
-    for (auto iter = word.rbegin(); iter != word.rend(); ++iter){
+    for (auto iter = word.rbegin(); iter != word.rend(); iter++){
         if(partWord.size() > 8 ){
-            return false;
+            return answer;
         }else{
             partWord.insert(partWord.begin(),*iter);
             if(Dictionary->find(partWord) && ruleUsed->size() == 0){
@@ -58,22 +59,32 @@ bool checkGrammars(string word){
                     }
                 }
                 partWord = "";
-                for (  ;iter != word.rend() ; ++iter) {
+                iter ++;
+                for (  ;iter != word.rend() ; iter++) {
                     if(partWord.size() > 8 ){
                         return false;
                     }else{
                         partWord.insert(partWord.begin(),*iter);
-                        if(Dictionary->find(partWord) && ruleUsed->size() == 0){
+                        if(Dictionary->find(partWord) ){
                             for (auto iteradorRuleVector = ruleUsed->begin(); iteradorRuleVector != ruleUsed->end(); ++iteradorRuleVector){
                                 if((*iteradorRuleVector).isInRule(partWord, 0)){
-                                    return true;
+                                    answer = true;
+                                    break;
+                                }else{
+                                    answer = false;
                                 }
                             }
-                            return false;
+                        }
+                    }
+                    if (answer){
+                        delete(ruleUsed);
+                        ruleUsed = new vector<rules>;
+                        break;
+                    }
                 }
             }
         }
     }
+    return answer;
 }
-
 
