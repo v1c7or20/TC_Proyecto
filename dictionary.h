@@ -6,7 +6,7 @@
 #include <iostream>
 
 using namespace std;
-
+/*--------Class that contains the words to translate---------*/
 class dictionary {
 private:
      vector<string>* words = nullptr;

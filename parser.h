@@ -5,7 +5,7 @@
 #include <vector>
 #include <iostream>
 #include "dictionary.h"
-
+/*----------class in charge of the translation--------*/
 using namespace std;
 class parser {
 private:
@@ -15,7 +15,6 @@ public:
     parser();
     ~parser();
     string parse(string wordToTranslate);
-
 };
 
 #endif //TC_PROYECTO_PARSER_H

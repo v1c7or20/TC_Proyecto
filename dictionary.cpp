@@ -17,7 +17,7 @@ dictionary::~dictionary() {
     delete(words);
     words = nullptr;
 }
-
+/*------Find if the word is part of the dictionary------*/
 bool dictionary::isInDictionary(string wordToLook) {
     for (auto &i : *words){
         if (wordToLook == i){
