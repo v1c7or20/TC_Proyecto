@@ -22,6 +22,9 @@ parser::~parser() {
 string parser::parse(string sentenceToTranslate) {
     string translatedSentence;
     string partialWord;
+    bool theControl = false;
+    bool nameControl = false;
+    bool ofControl = false;
     bool control = false;   //controls the first "of"
     bool isFather = false;  //controls if the last word read is father, else is mother
     int count = 0;          //count the number of "father" or "mother" read
@@ -30,24 +33,31 @@ string parser::parse(string sentenceToTranslate) {
             partialWord.insert(partialWord.begin(), *letter);
         }
         if (wordsToTranslate->isInDictionary(partialWord)){
-            if (partialWord == "Mary" or partialWord == "John"){
-                translatedSentence.insert(0, translatedWords->at(8));
+            if ((partialWord == "Mary" or partialWord == "John") and !nameControl and !theControl){
+                translatedSentence.insert(0, partialWord);
                 partialWord = "";
-            } else if( partialWord == "of"){
-                if (!control){
+                nameControl = true;
+            } else if( partialWord == "of" and nameControl and  !ofControl ){
+                if (!control and !theControl){
                     translatedSentence.insert(0,translatedWords->at(6)+" ");
                     partialWord = "";
                     control = true;
+                    ofControl = true;
+                    theControl = false;
                 }else {
                     partialWord = "";
+                    ofControl = true;
+                    theControl = false;
                 }
-            } else if(partialWord == "father" or partialWord == "mother"){
+            } else if((partialWord == "father" or partialWord == "mother") and nameControl and ofControl){
                 count +=1;
                 isFather = partialWord == "father";
                 partialWord = "";
-            } else if (partialWord == "the"){
+                ofControl = false;
+            } else if (partialWord == "the" and !theControl){
                 partialWord = "";
-            } else {
+                theControl = true;
+            } else if(partialWord == "The"){
                 string grossurMaker;
                 if (isFather){
                     grossurMaker.insert(0,"vater ");
@@ -67,8 +77,22 @@ string parser::parse(string sentenceToTranslate) {
                 } else{
                     translatedSentence.insert(0,"Ein ");
                 }
+                partialWord ="";
+            }else{
+                if(partialWord.size() > 7){
+                    cout<<"Error en la frase: "<<partialWord<<endl;
+                    return "error";
+                }
+            }
+        }else{
+            if(partialWord.size() > 7){
+                cout<<"Error en la frase: "<<partialWord<<endl;
+                return "error";
             }
         }
+    }
+    if(!partialWord.empty()){
+        return "error";
     }
     return translatedSentence;
 }
