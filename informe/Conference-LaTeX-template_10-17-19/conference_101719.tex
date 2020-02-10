@@ -37,7 +37,7 @@
 \title{\'Arbol ancestral *\\
 {\footnotesize \textsuperscript{*}Note: Sub-titles are not captured in Xplore and
 should not be used}
-\thanks{Identify applicable funding agency here. If none, delete this.}
+\thanks{}
 }
 
 \author{\IEEEauthorblockN{1\textsuperscript{st}Pe\~na Andia Victor Angelo}
@@ -187,6 +187,7 @@ $$string\  finalInterpretation(string\  word) $$
 . La funcion recibe el string $word$ que es la representacion intermedia a traducir. 
 
 \begin{lstlisting}
+//functions.cpp
 string finalInterpretation(string word){
 int count = 0;
 bool controlFoM = false, controlG = false;
@@ -220,14 +221,16 @@ count -=1;
 if(partialWord.size() > 3 or count == 0){
 cout<<"Error en la frase: "<<partialWord<<endl;
 return "error";
-}
-}
-}
+			}
+		}
+	}
 return middle;
 }
 \end{lstlisting}
 
+Las variables boleanas se usarn para controlar que la funcion input sea la adecuada. En caso no cumpla se retorna error. Por otro lado, la variable count sirve para tener en cuenta la cantidad de ")" para controlar la cantidad de funciones recibidas. Finalmente, al igual que la funcion anterior se itera de derecha a izquierda para obtener las funciones necesarias. El resultado sera la traduccion final en caso cumpla todos los requisistos o un mensaje de error.
 
+La 
 
 \section{Concluciones}
 
