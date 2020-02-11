@@ -28,7 +28,9 @@ string parser::parse(string sentenceToTranslate) {
     bool control = false;   //controls the first "of"
     bool isFather = false;  //controls if the last word read is father, else is mother
     int count = 0;          //count the number of "father" or "mother" read
+    int errorIn = 0;
     for (auto letter = sentenceToTranslate.rbegin();letter != sentenceToTranslate.rend(); letter++  ) {
+        errorIn +=1;
         if(*letter != ' '){
             partialWord.insert(partialWord.begin(), *letter);
         }
@@ -80,13 +82,13 @@ string parser::parse(string sentenceToTranslate) {
                 partialWord ="";
             }else{
                 if(partialWord.size() > 7){
-                    cout<<"Error en la frase: "<<partialWord<<endl;
+                    cout<<"Error en la frase: "<<partialWord<<"en el caracter numero "<<errorIn<<endl;
                     return "error";
                 }
             }
         }else{
             if(partialWord.size() > 7){
-                cout<<"Error en la frase: "<<partialWord<<endl;
+                cout<<"Error en la frase: "<<partialWord<<"en el caracter numero "<<errorIn<<endl;
                 return "error";
             }
         }

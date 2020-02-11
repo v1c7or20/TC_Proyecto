@@ -7,7 +7,9 @@ string middleInterpretation(string word){
     bool controlFoM = false, controlG = false;
     string partialWord;
     string middle;
+    int errorIn = 0;
     for (auto letter = word.rbegin(); letter != word.rend() ; ++letter) {
+        errorIn += 1;
         partialWord.insert(partialWord.begin(),*letter);
         if (partialWord == "father" and !controlFoM){
             middle.insert(0,"fa()");
@@ -28,7 +30,7 @@ string middleInterpretation(string word){
             partialWord = "";
         }else{
             if(partialWord.size() > 6 ){
-                cout<<"Error en la frase: "<<partialWord<<endl;
+                cout<<"Error en la frase: "<<partialWord<<"en el caracter numero "<<errorIn<<endl;
                 return "error";
             }
         }
@@ -45,8 +47,10 @@ string finalInterpretation(string word){
     bool controlFoM = false, controlG = false;
     string partialWord;
     string middle;
+    int errorIn=0;
     for (auto letter = word.rbegin(); letter != word.rend() ; ++letter) {
         partialWord.insert(partialWord.begin(), *letter);
+        errorIn +=1;
         if (partialWord == ")") {
             count += 1;
             partialWord = "";
@@ -71,7 +75,7 @@ string finalInterpretation(string word){
             count -=1;
         }else{
             if(partialWord.size() > 3 or count == 0){
-                cout<<"Error en la frase: "<<partialWord<<endl;
+                cout<<"Error en la frase: "<<partialWord<<"en el caracter numero "<<errorIn<<endl;
                 return "error";
             }
         }
