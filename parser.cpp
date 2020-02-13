@@ -82,18 +82,19 @@ string parser::parse(string sentenceToTranslate) {
                 partialWord ="";
             }else{
                 if(partialWord.size() > 7){
-                    cout<<"Error en la frase: "<<partialWord<<"en el caracter numero "<<errorIn<<endl;
+                    cout<<"Error en la frase: "<<partialWord<<"en entre el caracter numero "<<errorIn<<" y "<<errorIn - 7<<endl;
                     return "error";
                 }
             }
         }else{
             if(partialWord.size() > 7){
-                cout<<"Error en la frase: "<<partialWord<<"en el caracter numero "<<errorIn<<endl;
+                cout<<"Error en la frase: "<<partialWord<<"en entre el caracter numero "<<errorIn<<" y "<<errorIn - 7<<endl;
                 return "error";
             }
         }
     }
     if(!partialWord.empty()){
+        cout<<"Error en la frase: "<<partialWord<<"en entre los ultimos 6 caracteres."<<endl;
         return "error";
     }
     return translatedSentence;

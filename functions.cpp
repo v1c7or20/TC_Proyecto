@@ -30,13 +30,13 @@ string middleInterpretation(string word){
             partialWord = "";
         }else{
             if(partialWord.size() > 6 ){
-                cout<<"Error en la frase: "<<partialWord<<"en el caracter numero "<<errorIn<<endl;
+                cout<<"Error en la frase: "<<partialWord<<"en entre el caracter numero "<<errorIn<<"y "<<errorIn - 6<<endl;;
                 return "error";
             }
         }
     }
     if(!partialWord.empty()){
-        cout<<"Error en la frase: "<<partialWord<<endl;
+        cout<<"Error en la frase: "<<partialWord<<" entre los ultimos 5 caracteres."<<endl;
         return "error";
     }
     return middle;
@@ -75,7 +75,7 @@ string finalInterpretation(string word){
             count -=1;
         }else{
             if(partialWord.size() > 3 or count == 0){
-                cout<<"Error en la frase: "<<partialWord<<"en el caracter numero "<<errorIn<<endl;
+                cout<<"Error en la frase: "<<partialWord<<"en entre el caracter numero "<<errorIn<<" y "<<errorIn - 3<<endl;;
                 return "error";
             }
         }
