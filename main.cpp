@@ -1,8 +1,5 @@
-#include <iostream>
-#include "parser.h"
 #include "functions.cpp"
-
-using namespace std;
+#include "parser.cpp"
 
 int main(int argc, char const *argv[]){
     parser *Parser = new parser();

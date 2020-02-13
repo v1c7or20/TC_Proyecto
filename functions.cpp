@@ -1,14 +1,13 @@
-#include<string>
 #include <iostream>
 
 using namespace std;
 
-string middleInterpretation(string word){
+string middleInterpretation(string wordA){
     bool controlFoM = false, controlG = false;
     string partialWord;
     string middle;
     int errorIn = 0;
-    for (auto letter = word.rbegin(); letter != word.rend() ; ++letter) {
+    for (auto letter = wordA.rbegin(); letter != wordA.rend() ; ++letter) {
         errorIn += 1;
         partialWord.insert(partialWord.begin(),*letter);
         if (partialWord == "father" and !controlFoM){

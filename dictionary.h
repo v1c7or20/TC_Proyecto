@@ -1,12 +1,11 @@
 #ifndef TC_PROYECTO_DICTIONARY_H
 #define TC_PROYECTO_DICTIONARY_H
 
-#include <vector>
 #include <string>
-#include <iostream>
+#include <vector>
 
-using namespace std;
-/*--------Class that contains the words to translate---------*/
+/*--------Class that contains the words to translate----*/
+
 class dictionary {
 private:
      vector<string>* words = nullptr;

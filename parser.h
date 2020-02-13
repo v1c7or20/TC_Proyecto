@@ -1,12 +1,9 @@
 #ifndef TC_PROYECTO_PARSER_H
 #define TC_PROYECTO_PARSER_H
 
-#include <string>
-#include <vector>
-#include <iostream>
-#include "dictionary.h"
-/*----------class in charge of the translation--------*/
+#include "dictionary.cpp"
 using namespace std;
+/*----------class in charge of the translation--------*/
 class parser {
 private:
     vector<string> *translatedWords= nullptr;
