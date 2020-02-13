@@ -70,8 +70,8 @@ gram\'atica, C++, traductor, t\'erminos ancestrales
 \end{IEEEkeywords}
 
 \section{Introduction}
-Los lenguages son un conjunto de s\'imbolos definidos por $\sum$, 
-donde con los elementos en sigma es posible crear cadenas de s\'imbolos finitas. Pero, para conocer si una determinada oraci\'on o conjunto de palabras est\'an formadas correctamente se usa el concepto de gram\'atica. Este concepto ayuda a definir correctas cadenas que puedan ser reconocidas por un aut\'omata. 
+Los lenguages son un conjunto de simbolos definidos por $\sum$, 
+donde con los elementos en sigma es posible crear cadenas de simbolos finitas. Pero, para conocer si una determinada oracion o conjunto de palabras estan formadas correctamente se usa el concepto de gram\'atica. Este concepto ayuda a definir correctas cadenas que puedan ser reconocidas por un automata. 
 
 Estos conceptos ayudan a definir un determinada maquina capaz de resolver uno o unos ciertos problemas, dependiendo de sus estados.
 
@@ -110,11 +110,11 @@ $$M-> mutter$$
 $$D-> gross$$
 $$A-> ur$$
 
-Con la gram\'atica anterior y el resultado de la funci\'on se logro traducir la frase y encontrar una representaci\'on intermedia.
+Con la gramatica anterior y el resultado de la funcion se logro traducir la frase y encontrar una representacion intermedia.
 
-Finalmente, se recibe una oraci\'on cuyas palabras est\'an dentro del conjunto A3, siendo $A3 = \{The, mother, father, of, Mary, John \}$. Esta oraci\'on pasara traducirse al lenguaje A4, donde $A4 = \{Die, ein, mutter, vatter, von, Maria, John \}$
+Finalmente, se recibe una oracion cullas palabras estan dentro del conjunto A3, siendo $A3 = \{The, mother, father, of, Mary, John \}$. Esta oracion pasara traducirce al lenguage A4, donde $A4 = \{Die, ein, mutter, vatter, von, Maria, John \}$
 
-La gram\'atica del lenguaje A3 es:
+La gramatica del lenguage A3 es:
 
 $$Sentence    -> Init Sentence2$$
 $$Sentence2   -> Second Sentence2 | O Nombre $$
@@ -123,19 +123,19 @@ $$Init        -> The mother | The father $$
 $$Second      -> of the mother | of the father$$ 
 $$O           -> of$$
 
-La gram\'atica del lenguaje A4 es:
+La gramatica del lenguage A4 es:
 $$Sentence2   -> Second.Sentence2 | G O Nombre $$
 $$Nombre      -> Mary | John$$
 $$Second      -> ur $$ 
 $$O           -> von$$
 $$G -> gross$$
 
-Con estas gram\'aticas creadas solo es necesario realizar un c\'odigo que al leer las frases verifique que sean correctas, mientras se encarga de traducirlas.
+Con estas gramaticas creadas solo es necesario realizar un codigo que al leer las frases verifique que sean correctas, mientras se encarga de traducirlas.
 
-\section{Resoluci\'on}
+\section{Resolucion}
 
-El problema lo dividimos en dos principales partes, donde la primera se usa dos clases y en la segunda dos funciones. Se usa la funci\'on $$string \  middleInterpretation(string \ word)$$
-donde recibe como par\'ametro $word$ que es la palabra que pasara a ser una funci\'on. 
+El problema lo dividimos en dos pricipales partes, donde la primera se usa dos clases y en la segunda dos funciones. Se usa la funcion $$string \  middleInterpretation(string \ word)$$
+donde recibe como parametro $word$ que es la palabra que pasara a ser una funcion. 
 
 \begin{lstlisting}
 
@@ -186,47 +186,45 @@ $$string\  finalInterpretation(string\  word) $$
 . La funcion recibe el string $word$ que es la representacion intermedia a traducir. 
 
 \begin{lstlisting}
-	
 //functions.cpp
 string finalInterpretation(string word){
-	int count = 0;
-	bool controlFoM = false, controlG = false;
-	string partialWord;
-	string middle;
-	for (auto letter = word.rbegin(); letter != word.rend() ; ++letter) {
-		partialWord.insert(partialWord.begin(), *letter);
-		if (partialWord == ")") {
-			count += 1;
-			partialWord = "";
-		}else if (partialWord == "fa(" and !controlFoM and count>0){
-			middle.insert(0,"vatter");
-			partialWord = "";
-			count -=1;
-			controlFoM = true;
-		}else if(partialWord == "mo(" and !controlFoM and count>0){
-			middle.insert(0,"mutter");
-			partialWord = "";
-			controlFoM = true;
-			count -=1;
-		} else if( partialWord == "g(" and controlFoM and !controlG and count>0){
-			middle.insert(0,"gross");
-			partialWord = "";
-			controlG = true;
-			count -=1;
-		}else if (partialWord == "g(" and controlFoM and controlG and count>0){
-			middle.insert(0,"ur");
-			partialWord = "";
-			count -=1;
-		}else{
-			if(partialWord.size() > 3 or count == 0){
-			cout<<"Error en la frase: "<<partialWord<<endl;
-			return "error";
+int count = 0;
+bool controlFoM = false, controlG = false;
+string partialWord;
+string middle;
+for (auto letter = word.rbegin(); letter != word.rend() ; ++letter) {
+partialWord.insert(partialWord.begin(), *letter);
+if (partialWord == ")") {
+count += 1;
+partialWord = "";
+}else if (partialWord == "fa(" and !controlFoM and count>0){
+middle.insert(0,"vatter");
+partialWord = "";
+count -=1;
+controlFoM = true;
+}else if(partialWord == "mo(" and !controlFoM and count>0){
+middle.insert(0,"mutter");
+partialWord = "";
+controlFoM = true;
+count -=1;
+} else if( partialWord == "g(" and controlFoM and !controlG and count>0){
+middle.insert(0,"gross");
+partialWord = "";
+controlG = true;
+count -=1;
+}else if (partialWord == "g(" and controlFoM and controlG and count>0){
+middle.insert(0,"ur");
+partialWord = "";
+count -=1;
+}else{
+if(partialWord.size() > 3 or count == 0){
+cout<<"Error en la frase: "<<partialWord<<endl;
+return "error";
 			}
 		}
 	}
-	return middle;
+return middle;
 }
-
 \end{lstlisting}
 
 Las variables boleanas se usarn para controlar que la funcion input sea la adecuada. En caso no cumpla se retorna error. Por otro lado, la variable count sirve para tener en cuenta la cantidad de ")" para controlar la cantidad de funciones recibidas. Finalmente, al igual que la funcion anterior se itera de derecha a izquierda para obtener las funciones necesarias. El resultado sera la traduccion final en caso cumpla todos los requisistos o un mensaje de error.
