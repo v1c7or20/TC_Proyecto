@@ -34,29 +34,28 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{\'Arbol ancestral *\\
-{\footnotesize \textsuperscript{*}Note: Sub-titles are not captured in Xplore and
-should not be used}
+\title{\'Arbol ancestral \\
+{\footnotesize \textsuperscript{}}
 \thanks{}
 }
 
-\author{\IEEEauthorblockN{1\textsuperscript{st}Pe\~na Andia Victor Angelo}
-\IEEEauthorblockA{\textit{Ciencia de la computaci\'on} \\
+\author{\IEEEauthorblockN{1\textsuperscript{st}Pe\~na Andia, Victor Angelo}
+\IEEEauthorblockA{\textit{Ciencias de la computaci\'on} \\
 \textit{UTEC}\\
 Lima, Peru \\
 victor.pena@utec.edu.pe}
 \and
-\IEEEauthorblockN{2\textsuperscript{nd} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address or ORCID}
+\IEEEauthorblockN{2\textsuperscript{nd} Villanueva Avellanada, Gilmar}
+\IEEEauthorblockA{\textit{Ciencias de la computaci\'on} \\
+\textit{UTEC}\\
+Lima, Peru \\
+gilmar.villanueva@utec.edu.pe}
 \and
-\IEEEauthorblockN{3\textsuperscript{rd} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address or ORCID}
+\IEEEauthorblockN{3\textsuperscript{rd} Tanta Villanueva, Johan Hugo}
+\IEEEauthorblockA{\textit{Ciencias de la computaci\'on} \\
+\textit{UTEC}\\
+Lima, Peru \\
+johan.tanta@utec.edu.pe}
 }
 
 \maketitle
@@ -230,6 +229,8 @@ return middle;
 
 Las variables boleanas se usarn para controlar que la funcion input sea la adecuada. En caso no cumpla se retorna error. Por otro lado, la variable count sirve para tener en cuenta la cantidad de ")" para controlar la cantidad de funciones recibidas. Finalmente, al igual que la funcion anterior se itera de derecha a izquierda para obtener las funciones necesarias. El resultado sera la traduccion final en caso cumpla todos los requisistos o un mensaje de error.
 
+El codigo ignora primero todos los caracteres ")", solo lleva cuenta de estos para poder identificar el numero de funciones que debe existir. Despues exige que la primera palabra leida sea "mo" o "fa, estos solo los recibe una vez ya que el control cambiara e impedira que pueda ingresarse mas veces. Luego sigue la cantidad de "g" que continua, si es mayor a la esperada se lanzara un error. La ultima condicional se encarga de devolber el error, en la version actualizada es posible mostrar en que parte de la linea ingresada esta el error. 
+
 La parte final del proyecto se uso las mismas tecnicas, la principal diferencia es el uso de una clase adicional. La primera clase, dictionary es una estructura que nos almacena las palabras en ingles. Su unica funcion nos permite obtener si la palabra esta dentro de dictonary. Por otro lado, la clase parse se usa para contener las palabras del otro lenguage y usarlas para contruir la frase traducida.
 
 \begin{lstlisting}
@@ -316,8 +317,10 @@ return translatedSentence;
 
 En la funcion presentada se uso variables  boolenanas que funcionan cambiando de valor para aceptar la combinacion adecuada de palabras, son la manera de aceptar o rechazar lo que cumpla o incumpla la gramatica.
 
+Para que pueda hacer lo anterior las variables cambian respecto a la palabra reconocida. Primero espera reconocer un nombre para asi poder iniciar con lo demas. Cuando recibe "John" o "Mary" recien es posible que el programa pueda recibir of, activando el siguiente control. El control de la palabra "of" esta activo hasta que recibe "father" or "mother". Tambien cuando recibe lo anterior el control de father y mother es activado por lo que hace posible que el programa siga la gramatica indicada.
+
 \section{Concluciones}
 
-En conclusion, si es posible diseñar la gramatica de un lenguage es posible diseñar un programa capaz de reconocerlo. La dificulta empieza cuando la gramatica es mas grande y el lenguage puede generar ambiguedades. Es por esto que en un inicio del problema se hizo la gramatica correspondiente para asi tener una guia para la resolucion del problema.
+En conclusion, si es posible diseñar la gramatica de un lenguage es posible diseñar un programa capaz de reconocerlo. Ademas, como se demostro en el codigo, es posible generar "estados" mediate el uso de variables. Todo esto gracia a que en un inicio es posible contruir la gramatica y luego seguir esta como si de un automata se tratase. La dificulta empieza cuando la gramatica es mas grande y el lenguage puede generar ambiguedades. Es por esto que en un inicio del problema se hizo la gramatica correspondiente para asi tener una guia para la resolucion del problema.
 
 \end{document}
